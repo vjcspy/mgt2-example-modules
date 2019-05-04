@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Iz_CustomAdminGrid::data" title="CusDataGrid" module="Iz_CustomAdminGrid" sortOrder="51"
+             resource="Iz_CustomAdminGrid::data"/>
+        <add id="Iz_CustomAdminGrid::grid" title="Grid" module="Iz_CustomAdminGrid" sortOrder="10"
+             action="iz_custom_admin_grid/grid" resource="Iz_CustomAdminGrid::grid"
+             parent="Iz_CustomAdminGrid::data"/>
+    </menu>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Iz\PluginTest\Helper\Data">
+        <plugin name="A" type="Iz\PluginTest\Plugin\Helper\Data\A" sortOrder="10"/>
+        <plugin name="B" type="Iz\PluginTest\Plugin\Helper\Data\B" sortOrder="20"/>
+        <plugin name="C" type="Iz\PluginTest\Plugin\Helper\Data\C" sortOrder="30"/>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="runPluginTest" xsi:type="object">Iz\PluginTest\Console\RunPluginTest</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="warehouses.xsd">
+    <warehouses_list>
+        <warehouse>
+            <name>West 110</name>
+            <postcode>91910</postcode>
+        </warehouse>
+    </warehouses_list>
+</config>

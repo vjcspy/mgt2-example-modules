@@ -1,0 +1,14 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_admin_grid">
+        <column xsi:type="int" name="id_column" padding="10" identity="true" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="text" name="data_title" nullable="false" comment="Data Title"/>
+        <column xsi:type="text" name="data_description" nullable="false" comment="Data Description"/>
+        <column xsi:type="smallint" name="is_active" nullable="false" comment="is_active"/>
+        <column xsi:type="timestamp" name="created_at" comment="created_at"/>
+        <column xsi:type="timestamp" name="updated_at" comment="updated_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id_column"/>
+        </constraint>
+    </table>
+</schema>

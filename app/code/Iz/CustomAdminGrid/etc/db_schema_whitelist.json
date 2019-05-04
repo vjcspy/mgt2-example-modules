@@ -1,0 +1,13 @@
+{
+    "custom_admin_grid": {
+        "column": {
+            "id_column": true,
+            "severity": true,
+            "title": true,
+            "time_occurred": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

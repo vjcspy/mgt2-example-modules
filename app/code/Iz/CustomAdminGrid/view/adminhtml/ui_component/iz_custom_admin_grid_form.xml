@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">iz_custom_admin_grid_form.sample_data_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Data Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <!--Add button-->
+    <settings>
+        <buttons>
+            <button name="back" class="Iz\CustomAdminGrid\Block\Adminhtml\Data\Edit\Buttons\Back"/>
+            <button name="delete" class="Iz\CustomAdminGrid\Block\Adminhtml\Data\Edit\Buttons\Delete"/>
+            <button name="reset" class="Iz\CustomAdminGrid\Block\Adminhtml\Data\Edit\Buttons\Reset"/>
+            <button name="save" class="Iz\CustomAdminGrid\Block\Adminhtml\Data\Edit\Buttons\Save"/>
+            <button name="save_and_continue"
+                    class="Iz\CustomAdminGrid\Block\Adminhtml\Data\Edit\Buttons\SaveAndContinue"/>
+        </buttons>
+        <namespace>sample_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>iz_custom_admin_grid_form.sample_data_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="sample_data_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="iz_custom_admin_grid/grid/save"/>
+        </settings>
+        <dataProvider class="Iz\CustomAdminGrid\Model\DataProvider" name="sample_data_form_data_source">
+            <settings>
+                <requestFieldName>id_column</requestFieldName>
+                <primaryFieldName>id_column</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="data_details">
+        <settings>
+            <label/>
+        </settings>
+        <field name="id_column" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>id_column</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Data</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="data_title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Data Title</label>
+                <dataScope>data_title</dataScope>
+            </settings>
+        </field>
+        <field name="data_description" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label/>
+                <dataScope>data_description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

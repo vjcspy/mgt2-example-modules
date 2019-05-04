@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config" type="configType"/>
+    <xs:complexType name="warehouseType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="postcode"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="warehouses_listType">
+        <xs:sequence>
+            <xs:element type="warehouseType" name="warehouse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="configType">
+        <xs:sequence>
+            <xs:element type="warehouses_listType" name="warehouses_list"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
