@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Iz\PluginTest\Helper;
-
 
 class Log
 {
@@ -13,7 +11,10 @@ class Log
      */
     public function __construct()
     {
-        unlink(Log::FILE);
+        try {
+            unlink(Log::FILE);
+        } catch (\Exception $exception) {
+        }
     }
 
     public function write($string)
