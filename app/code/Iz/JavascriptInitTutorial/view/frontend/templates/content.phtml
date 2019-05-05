@@ -1,0 +1,28 @@
+<h1>Learn magento 2 javascript init script.</h1>
+
+<script type="text/javascript">
+    console.log("call requireJs module");
+    requirejs(['Iz_JavascriptInitTutorial/js/js1'], function (example) {
+        console.log(example)
+    });
+</script>
+
+
+<div id="one" class="foo">
+    Hello World
+</div>
+<div id="two" class="foo">
+    Goodbye World
+</div>
+
+<!--This is not a javascript tag. Magento have one scrip file to read this script tag and using requireJs to load the js component file-->
+<script type="text/x-magento-init">
+      {
+        "#one": {
+            "Iz_JavascriptInitTutorial/js/js3":{"config":"value"}
+        },
+        "*": {
+            "Iz_JavascriptInitTutorial/js/js2":{"config":"value"}
+        }
+    }
+</script>
