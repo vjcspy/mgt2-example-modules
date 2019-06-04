@@ -1,0 +1,12 @@
+<div class="items" style="margin-top: 30px">
+    <ul>
+        <!-- ko foreach: items -->
+        <li data-bind="css: { 'odd-row': $index() % 2 === 0, 'even-row': $index() % 2 === 1 }" style="margin-bottom: 10px; display: flex;">
+            <span data-bind="text: sku"></span>:&nbsp;
+            <span data-bind="text: qty"></span>&nbsp;x&nbsp;
+            $<span data-bind="text: price"></span>&nbsp;
+            <span data-bind="click: $parent.deleteItem" style="cursor: pointer">(delete)</span>
+        </li>
+        <!-- /ko -->
+    </ul>
+</div>

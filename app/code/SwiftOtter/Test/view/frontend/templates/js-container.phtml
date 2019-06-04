@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2018/06/16
+ * @website https://swiftotter.com
+ **/
+
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "component-a": {
+                        "component": "SwiftOtter_Test/js/ui-component-a",
+                        "provider": "component-b"
+                    },
+                    "component-b": {
+                        "component": "SwiftOtter_Test/js/ui-component-b"
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<div data-bind="scope: 'component-a'">
+    <h3 data-bind="text: label"></h3>
+    <div data-bind="text: amount"></div>
+</div>
+<div data-bind="scope: 'component-b'">
+    <h3 data-bind="text: label"></h3>
+    <div data-bind="text: amount"></div>
+</div>

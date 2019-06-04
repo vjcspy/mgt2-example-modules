@@ -1,0 +1,24 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/26
+ * @website https://swiftotter.com
+ **/
+?>
+
+<div class="verifier-outer_wrap" data-bind="scope: 'discount-list'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+       {
+           "*": {
+               "Magento_Ui/js/core/app": {
+                   "components": {
+                       "discount-list": {
+                         "component": "Chapter3_Database/js/discounts"
+                       }
+                   }
+               }
+           }
+       }
+    </script>
+</div>

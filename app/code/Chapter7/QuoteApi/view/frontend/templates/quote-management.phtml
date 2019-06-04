@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/25
+ * @website https://swiftotter.com
+ **/
+
+/** @var $block \Chapter2\Blocks\Block\ExampleBlock */
+?>
+<p>Note that this example has no user experience (no loading, slow performance). It is a demonstration of the Magento API in relation to quotes.</p>
+<button class="add-item"><?=__('Add item to quote')?></button><br/>
+
+<div class="item-wrapper" data-bind="scope: 'item-list'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+       {
+           "*": {
+               "Magento_Ui/js/core/app": {
+                   "components": {
+                       "item-list": {
+                         "component": "Chapter7_QuoteApi/js/items"
+                       }
+                   }
+               }
+           }
+       }
+    </script>
+</div>

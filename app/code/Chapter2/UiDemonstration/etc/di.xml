@@ -1,0 +1,50 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="custom_product_grid_data_source" xsi:type="string">CustomProductGridCollection</item>
+                <item name="custom_product_form_data_source" xsi:type="string">CustomProductGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CustomProductGridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">catalog_product_entity</argument>
+            <argument name="resourceModel" xsi:type="string">Chapter2\UiDemonstration\Model\ResourceModel\Product</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Chapter2\UiDemonstration\Model\DataProvider">
+        <plugin name="AddProductDetailsToDataProvider" type="Chapter2\UiDemonstration\Plugin\AddProductDetailsToDataProvider"/>
+    </type>
+
+    <virtualType name="ProductSave" type="Chapter2\UiDemonstration\Block\GenericButton">
+        <arguments>
+            <argument name="targetRoute" xsi:type="string">go/to/nowhere</argument>
+            <argument name="buttonData" xsi:type="array">
+                <item name="label" xsi:type="string">Save</item>
+                <item name="class" xsi:type="string">save primary</item>
+                <item name="sortOrder" xsi:type="number">90</item>
+                <item name="dataAttribute" xsi:type="array">
+                    <item name="mage-init" xsi:type="array">
+                        <item name="button" xsi:type="array">
+                            <item name="event" xsi:type="string">save</item>
+                        </item>
+                    </item>
+                    <item name="form-rol" xsi:type="string">save</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ProductBack" type="Chapter2\UiDemonstration\Block\GenericButton">
+        <arguments>
+            <argument name="targetRoute" xsi:type="string">*/*/</argument>
+            <argument name="buttonData" xsi:type="array">
+                <item name="label" xsi:type="string">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

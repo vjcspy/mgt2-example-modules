@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/26
+ * @website https://swiftotter.com
+ **/
+?>
+
+<?=__('Hello!')?>
+
+<span class="translation-entry">Original text</span>
+<script>
+require([
+    'jquery',
+    'jquery/ui',
+    'mage/translate'
+], function($){
+    $(window).load(function() {
+      debugger;
+      document.querySelector('.translation-entry').innerText = $.mage.__('New text');
+    });
+});
+</script>

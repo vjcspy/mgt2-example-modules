@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!-- adapted from: https://github.com/magento/magento2/blob/2.3/app/code/Magento/BrainTree/etc/di.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- this is the entry point for our payment method -->
+    <virtualType name="SuperPaymentsFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Chapter7\PaymentMethod\Model\PaymentMethod::CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">SuperPaymentsValueHandlerPool</argument>
+            <argument name="validatorPool" xsi:type="object">SuperPaymentsValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">SuperPaymentsCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Chapter7\PaymentMethod\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Chapter7\PaymentMethod\Block\Info</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- this loads the configuration values -->
+    <virtualType name="SuperPaymentsValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">SuperPaymentsConfigValueHandler</item>
+                <item name="can_void" xsi:type="string">Chapter7\PaymentMethod\Gateway\Config\CanVoidHandler</item>
+                <item name="can_cancel" xsi:type="string">Chapter7\PaymentMethod\Gateway\Config\CanVoidHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">SuperPaymentsConfigValues</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsConfigValues" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Chapter7\PaymentMethod\Model\PaymentMethod::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">SuperPaymentsCountryValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsCountryValidator" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">SuperPaymentsConfigValues</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="capture" xsi:type="string">SuperPaymentsCaptureCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsCaptureCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">SuperPaymentsCaptureRequest</argument>
+            <!-- for a more detailed example, see: vendor/magento/module-cybersource/Gateway/Http/Soap/TransferFactory.php -->
+            <argument name="transferFactory" xsi:type="object">Chapter7\PaymentMethod\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">Chapter7\PaymentMethod\Gateway\Http\Client\TransactionSale</argument>
+            <argument name="handler" xsi:type="object">SuperPaymentsAuthorizationHandler</argument>
+            <!--following is not needed, but is available-->
+            <!--<argument name="validator" xsi:type="object">Chapter7\PaymentMethod\Gateway\Validator\ResponseValidator</argument>-->
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsCaptureRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="payment" xsi:type="string">Chapter7\PaymentMethod\Gateway\Request\DataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SuperPaymentsAuthorizationHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="payment_details" xsi:type="string">Chapter7\PaymentMethod\Gateway\Response\PaymentDetailsHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

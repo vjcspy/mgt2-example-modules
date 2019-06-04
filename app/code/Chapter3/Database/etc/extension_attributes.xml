@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Directory\Api\Data\CountryInformationInterface">
+        <attribute code="currency_information" type="Chapter3\Database\Api\Data\CurrencyInformationInterface" />
+    </extension_attributes>
+</config>

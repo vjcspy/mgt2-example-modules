@@ -1,0 +1,81 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_product_grid.custom_product_grid_data_source</item>
+            <item name="deps" xsi:type="string">custom_product_grid.custom_product_grid_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">custom_product_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/create</item>
+            </item>
+        </item>
+    </argument>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <dataSource name="custom_product_grid_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <!-- notice that the following is passed into __construct on the DataProvider -->
+            <!-- can use: Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
+            <argument name="class" xsi:type="string">Chapter2\UiDemonstration\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">custom_product_grid_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument><!-- database primary column -->
+            <argument name="requestFieldName" xsi:type="string">id</argument><!-- variable in http requests -->
+            <argument name="data" xsi:type="array"> <!-- what handles the JS part of sending and processing ajax calls for the grid -->
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <columns name="custom_product_columns">
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Product ID</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">25</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="sku">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">SKU</label>
+            </settings>
+        </column>
+
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Chapter2\UiDemonstration\Ui\Component\Grid\Column\PostActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

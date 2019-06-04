@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/discount/:id" method="GET">
+        <service class="Chapter3\Database\Api\DiscountRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/discounts" method="GET">
+        <service class="Chapter3\Database\Api\DiscountRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/discount" method="POST">
+        <service class="Chapter3\Database\Api\DiscountRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Chapter3_Database::discounts"/>
+        </resources>
+    </route>
+    <route url="/V1/discount/:id" method="PUT">
+        <service class="Chapter3\Database\Api\DiscountRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Chapter3_Database::discounts"/>
+        </resources>
+    </route>
+    <route url="/V1/discount/:pageId" method="DELETE">
+        <service class="Chapter3\Database\Api\DiscountRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Chapter3_Database::discounts"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testOverride/:name" method="GET">
+        <service class="Chapter3\Database\Api\OverrideInterface" method="sayHello" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/postOverride" method="POST">
+        <service class="Chapter3\Database\Api\OverrideInterface" method="doPost" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

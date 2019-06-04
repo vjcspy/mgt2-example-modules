@@ -1,0 +1,37 @@
+<div class="discount-list" data-role="grid-wrapper">
+    <h2 data-bind="i18n: 'Available discounts'"></h2>
+
+    <button data-bind="click: loadItem, i18n: 'Load Item'"></button>
+    <button data-bind="click: loadItems, i18n: 'Load All Items'"></button>
+    <!-- ko foreach: items -->
+    <div class="discount__details">
+        <h4>
+            #<span data-bind="text: id"></span>
+            <span data-bind="text: name"></span>
+            = $<span data-bind="text: amount"></span>
+        </h4>
+    </div>
+    <!--/ko-->
+
+    <fieldset>
+        <h4 data-bind="i18n: 'Search'"></h4>
+        <label data-bind="i18n: 'Field name'" for="search-name"></label>
+        <select type="text" name="field" data-bind="value: field" id="search-name">
+            <option value="id">id</option>
+            <option value="name">name</option>
+            <option value="amount">amount</option>
+        </select>
+        <br/>
+        <label data-bind="i18n: 'Value'" for="search-value"></label>
+        <input type="text" name="field" data-bind="value: value" id="search-value"/>
+        <br/>
+        <label data-bind="i18n: 'Condition Type'" for="search-condition-type"></label>
+        <select name="field" data-bind="value: conditionType" id="search-condition-type">
+            <option value="eq">eq = Equals</option>
+            <option value="gt">gt = Greater Than</option>
+            <option value="lt">lt = Less Than</option>
+        </select>
+        <br/>
+        <button data-bind="click: search, i18n: 'Search'"></button>
+    </fieldset>
+</div>

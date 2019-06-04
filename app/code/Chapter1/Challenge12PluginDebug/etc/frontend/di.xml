@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- CHALLENGE: what happens when you enable this? Why does the result happen? -->
+    <!--<virtualType name="Chapter1\Challenge12PluginDebug\Model\MyUpdatedModel" type="Chapter1\Challenge12PluginDebug\Model\MyModel"/>-->
+
+    <!--<type name="Chapter1\Challenge12PluginDebug\Controller\Index\Index">-->
+        <!--<arguments>-->
+            <!--<argument name="myModel" xsi:type="object">Chapter1\Challenge12PluginDebug\Model\MyUpdatedModel</argument>-->
+        <!--</arguments>-->
+    <!--</type>-->
+
+    <type name="Chapter1\Challenge12PluginDebug\Model\MyUpdatedModel">
+        <plugin name="ChangeInputName" type="Chapter1\Challenge12PluginDebug\Model\Plugin\ChangeInputName" disabled="true" />
+    </type>
+</config>

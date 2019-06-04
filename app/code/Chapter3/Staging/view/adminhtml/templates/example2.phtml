@@ -1,0 +1,25 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/26
+ * @website https://swiftotter.com
+ **/
+
+/** @var \Chapter3\Staging\ViewModel\JoinProducts $joinProducts */
+$joinProducts = $block->getData('join_products');
+$orderItems = $joinProducts->getOrderItems();
+?>
+
+<h2>Order information for (#<?=$joinProducts->getProduct()->getId();?>)</h2>
+<p>There are <?=count($orderItems->getItems());?> items for review.</p>
+<?php /** @var \Magento\Sales\Model\Order\Item $orderItem */ ?>
+<?php foreach ($orderItems as $orderItem):?>
+    <b><?=__('Order')?> #: <?=$orderItem->getOrder()->getIncrementId();?></b>
+    <ul>
+        <li><?=__('Product Name')?>: <?=$orderItem->getName();?></li>
+        <li><?=__('Staged Product Name')?>: <?=$orderItem->getData('product_name');?></li>
+        <li><?=__('Created In')?>: <?=$orderItem->getData('created_in');?></li>
+        <li><?=__('Updated In')?>: <?=$orderItem->getData('updated_in');?></li>
+    </ul>
+    <hr/>
+<?php endforeach;?>

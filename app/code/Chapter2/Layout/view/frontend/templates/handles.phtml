@@ -1,0 +1,24 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/25
+ * @website https://swiftotter.com
+ **/
+
+/** @var \Chapter2\Layout\ViewModel\HandleList $handles */
+$handles = $block->getData('handles');
+?>
+
+<h1>Handles:</h1>
+<ul>
+    <?php foreach($handles->getHandles() as $handle):?>
+    <li><?=$handle?></li>
+    <?php endforeach;?>
+</ul>
+
+<h1>Body Classes:</h1>
+<ul>
+    <?php foreach($handles->getCssClasses() as $class):?>
+        <li><?=$class?></li>
+    <?php endforeach;?>
+</ul>

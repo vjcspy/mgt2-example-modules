@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Database examples</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="version.retrieval" template="Chapter3_Staging::example2.phtml">
+                <arguments>
+                    <argument name="join_products" xsi:type="object">Chapter3\Staging\ViewModel\JoinProducts</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

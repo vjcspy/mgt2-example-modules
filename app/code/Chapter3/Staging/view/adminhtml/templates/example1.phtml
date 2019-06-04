@@ -1,0 +1,34 @@
+<?php
+declare(strict_types=1);
+/**
+ * @by SwiftOtter, Inc., 2019/01/26
+ * @website https://swiftotter.com
+ **/
+
+/** @var \Chapter3\Staging\ViewModel\ChooseStagingUpdate $stagingUpdates */
+$stagingUpdates = $block->getData('choose_staging_update');
+
+/** @var \Chapter3\Staging\ViewModel\CurrentProduct $currentProduct */
+$currentProduct = $block->getData('current_product');
+
+/** @var \Magento\Catalog\Api\Data\ProductInterface $product */
+$product = $currentProduct->getProduct();
+?>
+
+<h2>Product Information (#<?=$product->getId()?>):</h2>
+<ul>
+    <li><?=__('Name')?>: <?=$product->getName();?></li>
+    <li><?=__('SKU')?>: <?=$product->getSku();?></li>
+</ul>
+<b>Description:</b>
+<?=$product->getCustomAttribute('description')->getValue();?>
+
+<h2><label for="version_number">Select version:</label></h2>
+<select id="version_number" onchange="window.location = '?___version=' + this.options[this.selectedIndex].value + '&___store=<?=$stagingUpdates->getCurrentStoreId();?>'">
+    <?php /** @var $update \Magento\Staging\Api\Data\UpdateInterface */ ?>
+    <?php foreach ($stagingUpdates->getUpdates() as $update):?>
+    <option value="<?=$update->getId();?>" <?php if ($stagingUpdates->getCurrentVersionId() == $update->getId()):?>selected<?php endif;?>>
+        <?=$update->getName();?> (<?=$update->getId()?>)
+    </option>
+    <?php endforeach;?>
+</select>

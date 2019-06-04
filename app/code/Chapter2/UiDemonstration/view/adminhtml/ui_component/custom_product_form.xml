@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_product_form.custom_product_form_data_source</item>
+            <item name="deps" xsi:type="string">custom_product_form.custom_product_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Edit Product</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+            <item name="navContainerName" xsi:type="string">left</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">ProductBack</item>
+            <item name="save" xsi:type="string">ProductSave</item>
+        </item>
+    </argument>
+    <dataSource name="custom_product_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <!-- can use: Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
+            <argument name="class" xsi:type="string">Chapter2\UiDemonstration\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">custom_product_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument> <!-- the column in the database -->
+            <argument name="requestFieldName" xsi:type="string">id</argument> <!-- the request parameter -->
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="chapter21uidemonstration/index/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="details">
+        <settings>
+            <label translate="true">Details</label>
+            <dataScope>data.general</dataScope>
+            <!-- NOTE: normally, fieldsets (as a new component) locate their data in a sub-object of the datasource.
+                 require('uiRegistry').get('custom_product_form.custom_product_form_data_source').data
+                 -->
+        </settings>
+        <field name="name" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <tooltip>
+                    <description translate="true">Set a name for your product.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="price" formElement="input">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Price</label>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="description">
+        <settings>
+            <label translate="true">Description</label>
+            <dataScope>data.general</dataScope>
+            <!-- NOTE: normally, fieldsets (as a new component) locate their data in a sub-object of the datasource.
+                 require('uiRegistry').get('custom_product_form.custom_product_form_data_source').data
+                 -->
+        </settings>
+        <field name="description" formElement="wysiwyg">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <tooltip>
+                    <description translate="true">Enter the description for this product.</description>
+                </tooltip>
+            </settings>
+        </field>
+    </fieldset>
+</form>

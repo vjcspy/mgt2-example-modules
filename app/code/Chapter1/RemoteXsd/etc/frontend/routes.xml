@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://raw.githubusercontent.com/magento/magento2/2.3-develop/lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="standard">
+        <route id="chapter11remote" frontName="chapter11remote">
+            <module name="Chapter1_RemoteXsd" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="chapter7paymentmethod" frontName="chapter7paymentmethod">
+            <module name="Chapter7_PaymentMethod" />
+        </route>
+    </router>
+</config>

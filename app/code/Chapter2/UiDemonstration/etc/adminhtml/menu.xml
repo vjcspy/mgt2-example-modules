@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <menu>
+        <add id="UiDemonstration::ViewProduct"
+             title="Products (custom)"
+             translate="title"
+             module="Chapter2_UiDemonstration"
+             sortOrder="50"
+             parent="Magento_Catalog::catalog"
+             resource="Chapter2_UiDemonstration::Products"
+             action="chapter21uidemonstration/index/index"
+        />
+    </menu>
+</config>

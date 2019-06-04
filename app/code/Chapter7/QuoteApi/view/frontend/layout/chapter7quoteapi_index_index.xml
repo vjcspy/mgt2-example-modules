@@ -1,0 +1,10 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Quote API demonstration</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="quote.demonstration" template="Chapter7_QuoteApi::quote-management.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

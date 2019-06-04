@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/testOverride/:firstName/:lastName" method="GET">
+        <service class="Chapter3\WebApiOverride\Api\OverrideInterface" method="sayHello" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/postOverride" method="POST">
+        <service class="Chapter3\WebApiOverride\Api\OverrideInterface" method="doPost" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testRef" method="GET">
+        <service class="Chapter3\WebApiOverride\Api\OverrideInterface" method="testRef" />
+        <resources>
+            <resource ref="test"/>
+        </resources>
+    </route>
+</routes>

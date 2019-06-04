@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="my-custom-layout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Block template fallback</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Chapter2\Blocks\Block\ExampleBlock" name="override.demonstration" template="Chapter2_Blocks::override.phtml">
+                <arguments>
+                    <argument name="cache_lifetime" xsi:type="number">7200</argument>
+                </arguments>
+            </block>
+
+            <block class="Chapter2\Blocks\Block\ExampleBlock" name="override.demonstration.notcached" template="Chapter2_Blocks::override.phtml"/>
+
+            <block name="translation.example" template="Chapter2_Blocks::translation.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

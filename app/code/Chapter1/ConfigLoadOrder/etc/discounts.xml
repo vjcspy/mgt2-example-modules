@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Chapter1_CustomConfig:etc/discounts.xsd">
+    <discounts>
+        <discount name="percent_off">
+            <name>Percent Off</name>
+            <type>percent_off</type>
+            <minimum>20</minimum>
+        </discount>
+        <discount name="money_off">
+            <minimum>50</minimum>
+        </discount>
+    </discounts>
+</config>

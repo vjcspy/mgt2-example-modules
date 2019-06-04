@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <exchange name="magento" type="topic" connection="amqp">
+        <binding id="defaultBinding" topic="chapter3.discount" destinationType="queue" destination="save_discount_price_queue"/>
+    </exchange>
+</config>

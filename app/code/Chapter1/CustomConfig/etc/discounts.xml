@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="discounts.xsd">
+    <discounts>
+        <discount name="free_shipping">
+            <name>Free Shipping</name>
+            <type>free_shipping</type>
+            <minimum>100</minimum>
+        </discount>
+        <discount name="money_off">
+            <name><![CDATA[$10 off!]]></name>
+            <type>money_off</type>
+            <minimum>0</minimum>
+        </discount>
+    </discounts>
+</config>

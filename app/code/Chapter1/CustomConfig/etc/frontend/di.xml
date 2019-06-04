@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Chapter1CustomConfigModelConfigReader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">Chapter1\CustomConfig\Model\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">Chapter1\CustomConfig\Model\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">discounts.xml</argument>
+
+            <!-- this is important to specify so merging can properly happen -->
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/discounts/discount" xsi:type="string">name</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Chapter1CustomConfigModelConfigData" type="\Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="cacheId" xsi:type="string">chapter1_cache</argument>
+            <argument name="reader" xsi:type="object">Chapter1CustomConfigModelConfigReader</argument>
+        </arguments>
+    </virtualType>
+    <type name="Chapter1\CustomConfig\Model\Config">
+        <arguments>
+            <argument name="configData" xsi:type="object">Chapter1CustomConfigModelConfigData</argument>
+        </arguments>
+    </type>
+</config>

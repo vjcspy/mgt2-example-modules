@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Chapter1\Plugins\Model\MyModel">
+        <!-- example #1: -->
+        <plugin name="Example1Before1" type="Chapter1\Plugins\Plugins\Example1Before1" sortOrder="10"/>
+        <plugin name="Example1Both1" type="Chapter1\Plugins\Plugins\Example1Both1" sortOrder="15"/>
+        <plugin name="Example1Before2" type="Chapter1\Plugins\Plugins\Example1Before1" sortOrder="20"/>
+        <plugin name="Example1Around1" type="Chapter1\Plugins\Plugins\Example1Around1" sortOrder="30"/>
+        <plugin name="Example1After1" type="Chapter1\Plugins\Plugins\Example1After1" sortOrder="40"/>
+        <plugin name="Example1After2" type="Chapter1\Plugins\Plugins\Example1After2" sortOrder="50"/>
+        <plugin name="Example1Both2" type="Chapter1\Plugins\Plugins\Example1Both2" sortOrder="55"/>
+
+        <!-- example #2: -->
+        <plugin name="Example2Plugin1" type="Chapter1\Plugins\Plugins\Example2Plugin1"/>
+    </type>
+
+    <type name="Chapter1\Plugins\Plugins\Example2Plugin1">
+        <plugin name="Example2Plugin2" type="Chapter1\Plugins\Plugins\Example2Plugin2" />
+    </type>
+</config>

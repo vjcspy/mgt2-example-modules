@@ -1,0 +1,151 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_customer_grid.custom_customer_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <!-- adding a new button is as easy as: -->
+        <buttons>
+            <button name="add">
+                <url path="*/*/edit"/>
+                <class>primary</class>
+                <label translate="true">Add New Customer</label>
+            </button>
+        </buttons>
+        <spinner>custom_customer_columns</spinner>
+        <deps>
+            <!-- this used to be in data/js_config/deps -->
+            <dep>custom_customer_grid.custom_customer_grid_data_source</dep>
+        </deps>
+    </settings>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <paging name="listing_paging"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>custom_customer_grid.custom_customer_grid.customer_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <dataSource name="custom_customer_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Chapter5\BackendCustomization\Model\DataProvider" name="custom_customer_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="custom_customer_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="*/*/saveInline"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">entity_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">custom_customer_grid.custom_customer_grid.custom_customer_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">custom_customer_grid.custom_customer_grid.custom_customer_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Customer ID</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">25</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+            </settings>
+        </column>
+
+        <column name="firstname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">First name</label>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+            </settings>
+        </column>
+
+        <column name="lastname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Last name</label>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+            </settings>
+        </column>
+
+        <column name="full_name"
+                class="Chapter5\BackendCustomization\Ui\Component\Grid\Column\CombinedName"
+                component="Chapter5_BackendCustomization/js/grid/columns/combinedName"
+                sortOrder="20">
+            <settings>
+                <altField>full_name</altField>
+                <hasPreview>1</hasPreview>
+                <addField>false</addField>
+                <label translate="true">Full Name</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Chapter5\BackendCustomization\Ui\Component\Grid\Column\PostActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

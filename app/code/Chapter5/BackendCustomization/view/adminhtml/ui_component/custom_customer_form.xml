@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_customer_form.custom_customer_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Edit Customer</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="CustomerBack"/>
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>custom_customer_form.custom_customer_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="customer_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="chapter5backendcustomization/index/index"/>
+        </settings>
+        <!-- can use/extend: Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
+        <dataProvider class="Chapter5\BackendCustomization\Model\DataProvider" name="custom_customer_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="details">
+        <settings>
+            <label translate="true">Details</label>
+            <dataScope>data.general</dataScope>
+            <!-- NOTE: normally, fieldsets (as a new component) locate their data in a sub-object of the datasource.
+                 require('uiRegistry').get('custom_customer_form.custom_customer_form_data_source').data
+                 -->
+        </settings>
+        <field name="firstname"
+               formElement="input"
+               component="Chapter5_BackendCustomization/js/form/inputWithOriginal"
+               >
+                <!-- note that you can specify a template above as this will override the field template -->
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <elementTmpl>Chapter5_BackendCustomization/form/inputWithOriginal</elementTmpl>
+            </settings>
+        </field>
+    </fieldset>
+</form>

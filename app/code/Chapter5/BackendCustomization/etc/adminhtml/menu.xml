@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <menu>
+        <add id="BackendCustomization::ViewCustomers"
+             title="Chapter 5 Backend Customization"
+             translate="title"
+             module="Chapter5_BackendCustomization"
+             sortOrder="50"
+             parent="Magento_Customer::customer"
+             resource="Chapter5_BackendCustomization::Customers"
+             action="chapter5backendcustomization/index/index"
+        />
+    </menu>
+</config>

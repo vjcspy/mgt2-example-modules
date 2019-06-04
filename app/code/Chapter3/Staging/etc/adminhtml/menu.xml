@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <menu>
+        <add id="Chapter3Staging::Example1"
+             title="Chapter 3, Example 1 (select products)"
+             translate="title"
+             module="Chapter3_Staging"
+             sortOrder="50"
+             parent="Magento_Catalog::catalog"
+             resource="Chapter3_Staging::Products"
+             action="chapter3staging/example1/index"
+        />
+        <add id="Chapter3Staging::Example2"
+             title="Chapter 3, Example 2 (join products)"
+             translate="title"
+             module="Chapter3_Staging"
+             sortOrder="50"
+             parent="Magento_Catalog::catalog"
+             resource="Chapter3_Staging::Products"
+             action="chapter3staging/example2/index"
+        />
+    </menu>
+</config>

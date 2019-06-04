@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="my-custom-layout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Handling layouts</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="handle.material" template="Chapter2_Layout::handles.phtml">
+                <arguments>
+                    <argument name="handles" xsi:type="object">Chapter2\Layout\ViewModel\HandleList</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
