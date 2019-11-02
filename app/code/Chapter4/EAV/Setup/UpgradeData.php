@@ -42,7 +42,8 @@ class UpgradeData implements UpgradeDataInterface
         EavConfig $eavConfig,
         AttributeRepositoryInterface $attributeRepository,
         SalesSetupFactory $salesSetupFactory
-    ) {
+    )
+    {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->eavConfig = $eavConfig;
         $this->attributeRepository = $attributeRepository;
@@ -67,6 +68,61 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '4') < 0) {
             $this->createCategoryAttribute();
         }
+        if (version_compare($context->getVersion(), '5') < 0) {
+            $this->newCustomerAttribute1();
+        }
+
+        if (version_compare($context->getVersion(), '6') < 0) {
+            $this->updateCustomerAttribute1();
+        }
+    }
+
+    protected function newCustomerAttribute1()
+    {
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create();
+        $attributeName = Attributes::CUSTOMER_CUSTOM_ATTRIBUTE . "_1";
+        // #1 create attribute
+        $eavSetup->addAttribute(
+            Customer::ENTITY,
+            $attributeName,
+            [
+                'group' => 'General',
+                'type' => 'varchar',
+                'label' => $attributeName,
+                'input' => 'text',
+                'required' => false,
+                'visible' => true,
+                'user_defined' => true,
+                'position' => 1,
+                'system' => 1,
+            ]
+        );
+
+        $widgetType = $this->eavConfig->getAttribute(
+            Customer::ENTITY,
+            $attributeName
+        );
+
+        // #2 add to forms
+        $widgetType->setData('used_in_forms', ['adminhtml_customer']);
+
+        // #3 save, for some reason, I was having trouble with the resource model in saving.
+        $widgetType->save();
+    }
+
+    protected function updateCustomerAttribute1(){
+        $attributeName = Attributes::CUSTOMER_CUSTOM_ATTRIBUTE . "_1";
+        $widgetType = $this->eavConfig->getAttribute(
+            Customer::ENTITY,
+            $attributeName
+        );
+
+        // #2 add to forms
+        $widgetType->setData('used_in_forms', ['adminhtml_customer','customer_account_create','customer_account_edit']);
+
+        // #3 save, for some reason, I was having trouble with the resource model in saving.
+        $widgetType->save();
     }
 
     private function updateProductAttribute()
@@ -99,15 +155,15 @@ class UpgradeData implements UpgradeDataInterface
             Customer::ENTITY,
             Attributes::CUSTOMER_PREFERRED_WIDGET_TYPE,
             [
-                'group'        => 'General',
-                'type'         => 'varchar',
-                'label'        => 'Preferred Widget Type',
-                'input'        => 'text',
-                'required'     => false,
-                'visible'      => true,
+                'group' => 'General',
+                'type' => 'varchar',
+                'label' => 'Preferred Widget Type',
+                'input' => 'text',
+                'required' => false,
+                'visible' => true,
                 'user_defined' => true,
-                'position'     => 1,
-                'system'       => 0,
+                'position' => 1,
+                'system' => 0,
             ]
         );
 
@@ -117,7 +173,7 @@ class UpgradeData implements UpgradeDataInterface
         );
 
         // #2 add to forms
-        $widgetType->setData('used_in_forms', ['adminhtml_customer']);
+        $widgetType->setData('used_in_forms', ['adminhtml_customer','customer_account_create','customer_account_edit']);
 
         // #3 save, for some reason, I was having trouble with the resource model in saving.
         $widgetType->save();
@@ -139,15 +195,15 @@ class UpgradeData implements UpgradeDataInterface
             AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
             Attributes::CUSTOMER_ADDRESS_HOUSE_COLOR,
             [
-                'group'        => 'General',
-                'type'         => 'varchar',
-                'label'        => 'House Color',
-                'input'        => 'text',
-                'required'     => false,
-                'visible'      => true,
+                'group' => 'General',
+                'type' => 'varchar',
+                'label' => 'House Color',
+                'input' => 'text',
+                'required' => false,
+                'visible' => true,
                 'user_defined' => true,
-                'position'     => 100,
-                'system'       => 0,
+                'position' => 100,
+                'system' => 0,
             ]
         );
 
@@ -170,7 +226,7 @@ class UpgradeData implements UpgradeDataInterface
 
         $salesSetup->addAttribute(Order::ENTITY, 'is_important', [
             'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            'length'=> 255,
+            'length' => 255,
             'visible' => false,
             'nullable' => true
         ]);
@@ -181,7 +237,7 @@ class UpgradeData implements UpgradeDataInterface
             [
                 'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 'length' => 255,
-                'comment' =>'Is Important'
+                'comment' => 'Is Important'
             ]
         );
     }
@@ -194,15 +250,15 @@ class UpgradeData implements UpgradeDataInterface
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create();
         $eavSetup->addAttribute(\Magento\Catalog\Model\Category::ENTITY, Attributes::CATEGORY_SHOW_HEADER, [
-            'type'     => 'int',
-            'label'    => 'Show Header',
-            'input'    => 'boolean',
-            'source'   => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
-            'visible'  => true,
-            'default'  => '0',
+            'type' => 'int',
+            'label' => 'Show Header',
+            'input' => 'boolean',
+            'source' => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
+            'visible' => true,
+            'default' => '0',
             'required' => false,
-            'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
-            'group'    => 'Display Settings',
+            'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+            'group' => 'Display Settings',
         ]);
     }
 }

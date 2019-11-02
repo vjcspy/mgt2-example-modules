@@ -14,4 +14,5 @@ class Attributes
     const CUSTOMER_ADDRESS_HOUSE_COLOR = 'house_color';
     const ORDER_COMMENTS = 'order_comments';
     const CATEGORY_SHOW_HEADER = 'show_header';
+    const CUSTOMER_CUSTOM_ATTRIBUTE = 'customer_customer_attribute';
 }
