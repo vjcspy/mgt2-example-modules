@@ -7,14 +7,6 @@ declare(strict_types=1);
 
 namespace Queueing\BasicMessageQueue\Operations;
 
-use Magento\Framework\Bulk\BulkManagementInterface;
-use Magento\AsynchronousOperations\Api\Data\OperationInterface;
-use Magento\AsynchronousOperations\Api\Data\OperationInterfaceFactory;
-use Magento\Framework\DB\Adapter\ConnectionException;
-use Magento\Framework\DB\Adapter\DeadlockException;
-use Magento\Framework\DB\Adapter\LockWaitException;
-use Magento\Framework\Exception\TemporaryStateExceptionInterface;
-
 class Consumer
 {
     /** @var \Psr\Log\LoggerInterface */
@@ -27,7 +19,8 @@ class Consumer
      */
     public function __construct(
         \Psr\Log\LoggerInterface $logger
-    ) {
+    )
+    {
         $this->logger = $logger;
     }
 
@@ -43,8 +36,28 @@ class Consumer
         $unserializedData = json_decode($serializedData, true);
 
         echo "Received data:\n";
-        print_r($unserializedData);
-
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info($this->generateCallTrace());
         $this->logger->debug('Time: ' . print_r($unserializedData, true));
+    }
+
+    protected function generateCallTrace()
+    {
+        $e = new \Exception();
+        $trace = explode("\n", $e->getTraceAsString());
+        // reverse array to make steps line up chronologically
+        $trace = array_reverse($trace);
+        array_shift($trace); // remove {main}
+        array_pop($trace); // remove call to this method
+        $length = count($trace);
+        $result = [];
+
+        for ($i = 0; $i < $length; $i++) {
+            $result[] = ($i + 1) . ')' . substr($trace[$i], strpos($trace[$i], ' ')); // replace '#someNum' with '$i)', set the right ordering
+        }
+
+        return "\t" . implode("\n\t", $result);
     }
 }

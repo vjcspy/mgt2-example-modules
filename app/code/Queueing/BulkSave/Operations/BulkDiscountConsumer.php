@@ -7,9 +7,7 @@ declare(strict_types=1);
 
 namespace Queueing\BulkSave\Operations;
 
-use Magento\Framework\Bulk\BulkManagementInterface;
 use Magento\AsynchronousOperations\Api\Data\OperationInterface;
-use Magento\AsynchronousOperations\Api\Data\OperationInterfaceFactory;
 use Magento\Framework\DB\Adapter\ConnectionException;
 use Magento\Framework\DB\Adapter\DeadlockException;
 use Magento\Framework\DB\Adapter\LockWaitException;

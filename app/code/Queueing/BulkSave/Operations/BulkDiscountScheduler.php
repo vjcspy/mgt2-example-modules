@@ -9,11 +9,11 @@ declare(strict_types=1);
 namespace Queueing\BulkSave\Operations;
 
 use Chapter3\Database\Api\Data\DiscountInterface;
-use Magento\Framework\Bulk\BulkManagementInterface;
 use Magento\AsynchronousOperations\Api\Data\OperationInterface;
 use Magento\AsynchronousOperations\Api\Data\OperationInterfaceFactory;
-use Magento\Framework\DataObject\IdentityGeneratorInterface;
 use Magento\Authorization\Model\UserContextInterface;
+use Magento\Framework\Bulk\BulkManagementInterface;
+use Magento\Framework\DataObject\IdentityGeneratorInterface;
 
 class BulkDiscountScheduler
 {

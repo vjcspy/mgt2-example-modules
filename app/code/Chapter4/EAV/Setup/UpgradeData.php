@@ -13,6 +13,7 @@ use Magento\Customer\Api\AddressMetadataInterface;
 use Magento\Customer\Model\Address;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Api\AttributeRepositoryInterface;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -75,6 +76,11 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '6') < 0) {
             $this->updateCustomerAttribute1();
         }
+
+        if (version_compare($context->getVersion(), '11') < 0) {
+            echo "here";
+            $this->updateCustomerAttribute1();
+        }
     }
 
     protected function newCustomerAttribute1()
@@ -123,6 +129,16 @@ class UpgradeData implements UpgradeDataInterface
 
         // #3 save, for some reason, I was having trouble with the resource model in saving.
         $widgetType->save();
+
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create();
+        $eavSetup->updateAttribute(
+            Customer::ENTITY,
+            $attributeName,
+            [
+                'global' => ScopedAttributeInterface::SCOPE_STORE
+            ]
+        );
     }
 
     private function updateProductAttribute()

@@ -71,13 +71,18 @@ class PublishMessage extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $publishData = ['data' => date('m/d/Y h:i:s a', time())];
-            $this->publisher->publish('cus.queue.topic', $this->jsonHelper->serialize($publishData));
-            $result = ['msg' => 'success'];
+            for ($i = 0; $i < 30; $i++) {
+                $publishData = [
+                    'date'   => date('m/d/Y h:i:s a', time()),
+                    'number' => mt_rand()
+                ];
+                $this->publisher->publish('cus.queue.topic', $this->jsonHelper->serialize($publishData));
+                $result = ['msg' => 'success'];
+            }
         } catch (\Exception $e) {
             $result = ['error' => $e->getMessage()];
         }
 
-        $output->writeln($result);
+        $output->writeln(json_encode($result, null, 2));
     }
 }
