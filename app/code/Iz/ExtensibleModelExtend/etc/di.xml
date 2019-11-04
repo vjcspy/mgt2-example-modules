@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @author Interactiv4 Team
+  ~ @copyright  Copyright © Interactiv4 (https://www.interactiv4.com)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Iz\ExtensibleModelExtend\Api\Data\CustomPostInterface"
+                type="Iz\ExtensibleModelExtend\Model\CustomPost"/>
+    <preference for="Iz\ExtensibleModelExtend\Api\Data\CustomPostSearchResultsInterface"
+                type="Iz\ExtensibleModelExtend\Model\CustomPostSearchResults"/>
+    <preference for="Iz\ExtensibleModelExtend\Api\CustomPostRepositoryInterface"
+                type="Iz\ExtensibleModelExtend\Model\CustomPostRepository"/>
+
+    <type name="Iz\ExtensibleModel\Api\PostRepositoryInterface">
+        <plugin name="iz_custompost_plugin_entity_repository"
+                type="Iz\ExtensibleModelExtend\Plugin\PostRepositoryPlugin"/>
+    </type>
+</config>

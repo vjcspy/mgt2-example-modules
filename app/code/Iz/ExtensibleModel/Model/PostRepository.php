@@ -117,7 +117,7 @@ class PostRepository implements PostRepositoryInterface
         /** @var Collection $collection */
         $collection = $this->postCollectionFactory->create();
 
-        // Neu muon work voi extensible attribute thi phai them ExtensionAttributesJoinProcessor
+        // Optional. Neu muon co cai nay thi phai khai bao trong extension_attributes.xml
         $this->extensionAttributesJoinProcessor->process($collection, PostInterface::class);
 
         $this->collectionProcessor->process($searchCriteria, $collection);

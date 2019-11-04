@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Interactiv4 Team
+  ~ @copyright  Copyright © Interactiv4 (https://www.interactiv4.com)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Iz\ExtensibleModel\Api\Data\PostInterface">
+        <attribute code="short_description" type="string">
+            <resources>
+                <resource ref="Iz_ExtensibleModel::post"/>
+            </resources>
+            <join reference_table="iz_custompost_post" reference_field="post_id" join_on_field="id">
+                <field>short_description</field>
+            </join>
+        </attribute>
+    </extension_attributes>
+</config>
