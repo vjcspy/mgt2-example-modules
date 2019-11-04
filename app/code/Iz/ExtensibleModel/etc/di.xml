@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+ ~ @author Interactiv4 Team
+ ~ @copyright Copyright (c) 2017 Interactiv4 (https://www.interactiv4.com)
+ ~ @package Interactiv4_Post
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Iz\ExtensibleModel\Api\Data\PostInterface" type="Iz\ExtensibleModel\Model\Post"/>
+    <preference for="Iz\ExtensibleModel\Api\Data\PostSearchResultsInterface"
+                type="Iz\ExtensibleModel\Model\PostSearchResults"/>
+    <preference for="Iz\ExtensibleModel\Api\PostRepositoryInterface" type="Iz\ExtensibleModel\Model\PostRepository"/>
+</config>
